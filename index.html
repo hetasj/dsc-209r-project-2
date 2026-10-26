@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Project 2 Report</title>
+    <style>
+      :root {
+        --color-neutral-95: hsl(220 10% 95%);
+        --color-neutral-90: hsl(220 10% 90%);
+        --color-neutral-80: hsl(220 10% 80%);
+        --color-neutral-70: hsl(220 10% 70%);
+        --color-neutral-60: hsl(220 10% 60%);
+        --color-neutral-50: hsl(220 10% 50%);
+        --color-neutral-40: hsl(220 10% 40%);
+        --color-neutral-30: hsl(220 10% 30%);
+        --color-neutral-20: hsl(220 10% 20%);
+        --color-neutral-10: hsl(220 10% 10%);
+      }
+
+      html {
+        font: 100%/1.5 system-ui;
+        counter-reset: figure;
+        background: var(--color-neutral-95);
+        max-width: min(75vw, 80em);
+        margin: 0 auto;
+      }
+
+      /* Headings */
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        line-height: 1.1;
+        font-weight: 600;
+        text-wrap: balance;
+      }
+
+      h1,
+      h2 {
+        border-bottom: 1px solid var(--color-neutral-80);
+        padding-bottom: 0.2em;
+      }
+
+      h1 {
+        margin-block: 1em 0.5rem;
+        font-size: clamp(2.5em, 150% + 2vh + 2vw, 10vmin);
+        font-weight: 800;
+
+        small {
+          display: block;
+          width: fit-content;
+          padding: 0.2em 0.5em;
+          margin-inline: auto;
+          color: white;
+          background: var(--color-neutral-40);
+          font-size: 40%;
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+      }
+
+      h2 {
+        font-size: 180%;
+        color: var(--color-neutral-30);
+      }
+
+      h3 {
+        font-size: 130%;
+      }
+
+      /* Lists */
+
+      ul,
+      ol {
+        padding-inline-start: 2em;
+      }
+
+      li {
+        &::marker {
+          color: var(--color-neutral-40);
+        }
+
+        + li {
+          margin-top: 0.2em;
+        }
+      }
+
+      /* Sectioning elements */
+
+      header {
+        padding-block: 1em;
+        text-align: center;
+      }
+
+      main {
+        background: white;
+        color: var(--color-neutral-20);
+        border-radius: 1rem;
+        padding: 0.1rem 2rem;
+      }
+
+      /* Figures */
+
+      figure {
+        margin: 1em 0;
+        padding: 0.5rem;
+        margin-inline: -0.5em;
+        border: 1px solid var(--color-neutral-80);
+        box-shadow: 0 0.1em 0.2em var(--color-neutral-95);
+        text-align: center;
+        background: white;
+
+        > img {
+          max-width: 100%;
+          height: auto;
+        }
+
+        > figcaption {
+          font: 500 75% var(--font-sans);
+          background: var(--color-neutral-95);
+          padding: 0.5rem;
+          margin: -0.5rem;
+          margin-top: 0.5rem;
+          counter-increment: figure;
+          text-align: left;
+
+          &::before {
+            content: 'Figure ' counter(figure) ': ';
+            font-weight: bold;
+            color: var(--color-neutral-40);
+          }
+
+          a:not(:hover, :focus, :active) {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-color: color-mix(
+              in lab,
+              currentColor,
+              transparent 70%
+            );
+          }
+        }
+      }
+
+      /* Score badges for design decisions */
+
+      .score {
+        display: inline-block;
+        min-width: 3.2em;
+        padding: 0 0.4em;
+        margin-right: 0.4em;
+        border-radius: 0.3em;
+        font-weight: 700;
+        font-size: 90%;
+        text-align: center;
+        background: var(--color-neutral-90);
+        color: var(--color-neutral-20);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>
+        <small>Project 2</small>
+        Persuasive or Deceptive Visualization?
+      </h1>
+
+      <p><strong>Heta Joshi</strong> · <em>hejoshi@ucsd.edu</em></p>
+    </header>
+
+    <main>
+      <h2>Proposition: The gap between rich and poor countries is shrinking.</h2>
+
+      <p>
+        Both visualizations use the same World Bank data: GDP per person in constant 2010 US dollars for
+        high-income countries and for poorer income groups, from 1990 to 2019. Design decision scores below use the
+        scale from -2 (fully deceptive) to 2 (fully earnest).
+      </p>
+
+      <section>
+        <h3>FOR the Proposition: The gap between rich and poor countries is shrinking</h3>
+
+        <figure>
+          <img src="A1_ratio_shrinking.png" alt="Line chart: high-income countries' GDP per person as a multiple of low and middle income countries' GDP per person, falling from 14.8x in 1990 to 9.3x in 2019. The y-axis runs from 8x to 17x." />
+          <figcaption>
+            Rich-country income per person as a multiple of low and middle income countries, 1990 to 2019.
+            Data: <a href="https://github.com/light-and-salt/World-Bank-Data-by-Indicators">World Bank Human Development Indicators</a>, economy-and-growth.
+          </figcaption>
+        </figure>
+
+        <p>Design Decisions and Rationale:</p>
+
+        <ul>
+          <li>
+            <span class="score">-1</span><strong>Using ratio instead of dollar amounts.</strong>
+            Dividing rich-country income by developing-country income makes the gap decrease (14.8x in 1990 to 9.3x in 2019), but in raw dollars the gap between the same groups increased. A ratio is a common way to measure inequality, so this is not fully deceptive, but I chose it because it is the calculation that makes the gap shrink. I considered showing the ratio and the dollar gap together, but that would have weakened the argument.
+          </li>
+          <li>
+            <span class="score">-1.5</span><strong>Choosing "low and middle income" as the comparison group.</strong>
+            The World Bank puts China and India in the "low and middle income" group, and their rapid growth pulled the whole group’s average up drastically. It is debatable whether they still fit that label. Comparing rich countries to only the lowest income countries instead, the ratio stays nearly flat (52x in 1990, 53x in 2019). The chart never shows that comparison, so I scored this close to fully deceptive.
+          </li>
+          <li>
+            <span class="score">-1</span><strong>Truncated y-axis that does not start at 0.</strong>
+            The axis runs from 8x to 17x, which makes the slope of the line look much more dramatic. A 37% decline fills almost the whole height of the chart and reads as a collapse. The tick labels are still visible, so the truncation is technically shown, which makes it easy to miss at first glance. A zero-based axis would show a smaller-looking drop.
+          </li>
+          <li>
+            <span class="score">-0.5</span><strong>Using green to highlight the "winner".</strong>
+            Green signals progress and success, so the falling line reads as good news before the reader looks at any numbers. Color alone does not change the data, so I scored this as only mildly deceptive.
+          </li>
+          <li>
+            <span class="score">-0.5</span><strong>Using an eye-catching headline with the most dramatic numbers.</strong>
+            The title "Rich countries were 15x richer per person in 1990. Now: 9x" leads with the biggest-sounding drop, and it rounds 14.8x up to 15x and 9.3x down to 9x, which slightly exaggerates the change. The exact values are still labeled on the chart, which keeps the claim accurate.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>AGAINST the Proposition: The gap between rich and poor countries is not shrinking</h3>
+
+        <figure>
+          <img src="B1_gap_widening.png" alt="Bar chart: GDP per person in high-income countries minus low-income countries, in 2010 US dollars: $28.7K in 1990, $35.1K in 2000, $38.6K in 2010 and $43.5K in 2019." />
+          <figcaption>
+            Gap in GDP per person between high-income and low-income countries, selected years.
+            Data: <a href="https://github.com/light-and-salt/World-Bank-Data-by-Indicators">World Bank Human Development Indicators</a>, economy-and-growth.
+          </figcaption>
+        </figure>
+
+        <p>Design Decisions and Rationale:</p>
+
+        <ul>
+          <li>
+            <span class="score">-1</span><strong>Using raw dollar gap instead of ratio.</strong>
+            This is the exact opposite of the first technique on Side A. Subtracting low-income GDP per person from rich-country GDP per person makes the gap grow from $28,664 in 1990 to $43,522 in 2019. A subtracted gap grows whenever rich countries grow at all, even when poorer countries grow at a similar percentage rate. The instructor confirmed that choosing raw numbers versus calculated measures counts as a deceptive technique.
+          </li>
+          <li>
+            <span class="score">-1.5</span><strong>Changing the comparison group to only "low income".</strong>
+            Side A compares rich countries to "low and middle income" countries, but this chart switches to "low income" only, which leaves out China and India as the massive contributors to growth. This makes the gap as large as possible. The difference is noted in the subtitle, but readers might not pay close attention and notice that the comparison changed between the two charts.
+          </li>
+          <li>
+            <span class="score">-1</span><strong>Selectively chosen years.</strong>
+            Showing only 1990, 2000, 2010 and 2019 makes it seem like there was a constant increase. It omits the years where the gap decreased: in 2008 and 2009 the gap shrank, by $1,625 per person in 2009 alone. Ten-year steps look like a neutral choice, which makes this hard to notice.
+          </li>
+          <li>
+            <span class="score">-0.5</span><strong>Using red to highlight the "loser".</strong>
+            Red signals a problem or failure, so the bars read as bad news before the reader looks at the numbers. Like the green on Side A, color does not change the data, so I scored it as only mildly deceptive.
+          </li>
+          <li>
+            <span class="score">-0.5</span><strong>Using an eye-catching headline with the most dramatic number.</strong>
+            The title "The rich-poor gap grew by $14,900 per person since 1990" leads with the largest-sounding number. It is accurate, but it gives no growth rate, so the reader cannot see that both groups grew at similar percentage rates.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Final Reflection</h2>
+
+        <p>
+          Throughout this project the most surprising part to me was that I never had to change any numbers. Both
+          charts use the same World Bank dataset, and every value used in them them is true. The opposite conclusions
+          come entirely from decisions that can be justified as day to day operations: whether to divide or subtract, which income group
+          counts as "poor," where the y-axis starts, and which years to show. Building the argument for each
+          side was straightforward once I found the calculation that supported it. The harder part was making
+          the deceptive choices subtle enough to pass a first glance, and then scoring them objectively, because
+          nearly every choice I made has a reasonable and earnest justification.
+        </p>
+
+        <p>
+          That made me rethink what "ethical visualization" means. I used to think of deception as something very blatantly breaking
+          a visual rule such as a misleading axis, but here the most effective techniques were data transformations,
+          and a ratio or a dollar gap is not wrong on its own. What made them deceptive was the purpose: I
+          chose each measure because it supported the side I was arguing, and I hid the measure that
+          contradicted it. I now see ethical visualization as being less about following conventions and
+          more about whether the reader could reach a different conclusion if they knew what I changed or left out.
+        </p>
+
+        <p>
+          The clearest boundary I can draw is between framing and concealment within the data. Choosing a strong title, a
+          meaningful color, or a focused comparison are all acceptable persuasion as long as the reader can see what
+          was chosen. However it becomes misleading when a choice hides information the reader would need to judge
+          the claim, such as switching comparison groups between charts, leaving out the years where a trend
+          reversed, or showing only one of two equally valid calculations. A simple test is whether the chart
+          would still persuade the same way if its methods were explicitly stated next to it. If the chart would still 
+          convince people, it is persuasive. If the note would change their mind, it is deceptive. For example, if my 
+          ratio chart included the note "But compared to only the poorest countries, the ratio stayed at 52x vs 53x", readers 
+          would no longer believe the gap is shrinking. That is why I consider it deceptive and not just persuasive.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
